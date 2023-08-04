@@ -11,4 +11,5 @@ export const walletIds = {
   magicLink: "magicLink",
   paper: "paper",
   blocto: "blocto",
+  defiWallet: "defiWallet"
 };

@@ -50,6 +50,7 @@ type InjectedProviderFlags = {
   isTrustWallet?: true;
   isXDEFI?: true;
   isZerion?: true;
+  isDefiWallet?: true;
 };
 type InjectedProviders = InjectedProviderFlags & {
   isMetaMask: true;
