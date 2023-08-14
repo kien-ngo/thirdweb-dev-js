@@ -1,15 +1,15 @@
 import { resolveAddress } from "../../common/ens/resolveAddress";
-import { EIP712Domain, signTypedDataInternal } from "../../common/sign";
+import { type EIP712Domain, signTypedDataInternal } from "../../common/sign";
 import { LOCAL_NODE_PKEY } from "../../constants/addresses/LOCAL_NODE_PKEY";
 import { ChainId } from "../../constants/chains/ChainId";
 import { NATIVE_TOKEN_ADDRESS } from "../../constants/currency";
 import { getChainProvider } from "../../constants/urls";
-import { AddressOrEns } from "../../schema/shared/AddressOrEnsSchema";
-import { Address } from "../../schema/shared/Address";
-import { SDKOptions } from "../../schema/sdk-options";
+import type { AddressOrEns } from "../../schema/shared/AddressOrEnsSchema";
+import type { Address } from "../../schema/shared/Address";
+import type { SDKOptions } from "../../schema/sdk-options";
 import type { Amount, CurrencyValue } from "../../types/currency";
 import { RPCConnectionHandler } from "../classes/rpc-connection-handler";
-import { NetworkInput, TransactionResult } from "../types";
+import type { NetworkInput, TransactionResult } from "../types";
 import ERC20Abi from "@thirdweb-dev/contracts-js/dist/abis/IERC20.json";
 import {
   type BigNumberish,

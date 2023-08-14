@@ -11,9 +11,9 @@ import {
 } from "../contracts";
 import { SmartContract } from "../contracts/smart-contract";
 import { getSignerAndProvider } from "../constants/urls";
-import { Abi, AbiSchema } from "../schema/contracts/custom";
-import { AddressOrEns } from "../schema/shared/AddressOrEnsSchema";
-import { SDKOptions } from "../schema/sdk-options";
+import { type Abi, AbiSchema } from "../schema/contracts/custom";
+import type { AddressOrEns } from "../schema/shared/AddressOrEnsSchema";
+import type { SDKOptions } from "../schema/sdk-options";
 import { ContractPublisher } from "./classes/contract-publisher";
 import { MultichainRegistry } from "./classes/multichain-registry";
 import { RPCConnectionHandler } from "./classes/rpc-connection-handler";
@@ -25,17 +25,26 @@ import type {
 } from "../contracts";
 import type { NetworkInput, ChainOrRpcUrl } from "./types";
 import { UserWallet } from "./wallet/user-wallet";
-import { Chain, defaultChains } from "@thirdweb-dev/chains";
+import { type Chain, defaultChains } from "@thirdweb-dev/chains";
 import IThirdwebContractABI from "@thirdweb-dev/contracts-js/dist/abis/IThirdwebContract.json";
-import { ContractAddress, GENERATED_ABI } from "@thirdweb-dev/generated-abis";
-import { IThirdwebStorage, ThirdwebStorage } from "@thirdweb-dev/storage";
-import type { ContractInterface, Signer, BaseContract } from "ethers";
+import {
+  type ContractAddress,
+  GENERATED_ABI,
+} from "@thirdweb-dev/generated-abis";
+import { type IThirdwebStorage, ThirdwebStorage } from "@thirdweb-dev/storage";
+import type {
+  ContractInterface,
+  Signer,
+  BaseContract,
+  BytesLike,
+} from "ethers";
 import {
   Contract as EthersContract,
   Wallet as EthersWallet,
   utils as ethersUtils,
+  ContractFactory as ethersContractFactory,
 } from "ethers";
-import { BaseContractForAddress } from "../types/contract";
+import type { BaseContractForAddress } from "../types/contract";
 import { ContractVerifier } from "./classes/contract-verifier";
 import { fetchCurrencyValue } from "../common/currency/fetchCurrencyValue";
 
@@ -75,7 +84,7 @@ import {
   TokenInitializer,
   VoteInitializer,
 } from "../contracts";
-import { Address } from "../schema/shared/Address";
+import type { Address } from "../schema/shared/Address";
 import type { CurrencyValue } from "../types/currency";
 import type {
   DeployEvents,
@@ -96,16 +105,10 @@ import type { DeploySchemaForPrebuiltContractType } from "../contracts";
 import { ContractFactory } from "./classes/factory";
 import { ContractRegistry } from "./classes/registry";
 import { DeployTransaction, Transaction } from "./classes/transactions";
-import {
-  type BytesLike,
-  Contract,
-  utils,
-  ContractFactory as ethersContractFactory,
-} from "ethers";
 import { EventEmitter } from "eventemitter3";
 import invariant from "tiny-invariant";
 import { z } from "zod";
-import {
+import type {
   DeploymentTransaction,
   PrecomputedDeploymentTransaction,
 } from "../types/any-evm/deploy-data";
@@ -1615,7 +1618,7 @@ export class ContractDeployer extends RPCConnectionHandler {
       initializerArgs: any[],
     ): Promise<DeployTransaction> => {
       const resolvedAddress = await resolveAddress(implementationAddress);
-      const encodedInitializer = Contract.getInterface(
+      const encodedInitializer = EthersContract.getInterface(
         implementationAbi,
       ).encodeFunctionData(initializerFunction, initializerArgs);
 
@@ -2003,7 +2006,7 @@ export class ContractDeployer extends RPCConnectionHandler {
       const bytecode = compilerMetadata.bytecode.startsWith("0x")
         ? compilerMetadata.bytecode
         : `0x${compilerMetadata.bytecode}`;
-      if (!utils.isHexString(bytecode)) {
+      if (!ethersUtils.isHexString(bytecode)) {
         throw new Error(`Contract bytecode is invalid.\n\n${bytecode}`);
       }
       const constructorParamTypes = extractConstructorParamsFromAbi(
