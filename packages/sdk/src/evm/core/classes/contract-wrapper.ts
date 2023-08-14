@@ -16,11 +16,11 @@ import { signTypedDataInternal } from "../../common/sign";
 import { isBrowser } from "../../common/utils";
 import { ChainId } from "../../constants/chains/ChainId";
 import { EventType } from "../../constants/events";
-import { Address } from "../../schema/shared/Address";
+import type { Address } from "../../schema/shared/Address";
 import { CallOverrideSchema } from "../../schema/shared/CallOverrideSchema";
-import { AbiSchema, ContractSource } from "../../schema/contracts/custom";
-import { SDKOptions } from "../../schema/sdk-options";
-import {
+import { AbiSchema, type ContractSource } from "../../schema/contracts/custom";
+import type { SDKOptions } from "../../schema/sdk-options";
+import type {
   ForwardRequestMessage,
   GaslessTransaction,
   NetworkInput,
@@ -38,7 +38,6 @@ import {
   Contract,
   type ContractInterface,
   type ContractTransaction,
-  utils,
   type ContractFunction,
   type providers,
   type Signer,
@@ -47,6 +46,7 @@ import {
 import invariant from "tiny-invariant";
 import { CONTRACT_ADDRESSES } from "../../constants/addresses/CONTRACT_ADDRESSES";
 import { getContractAddressByChainId } from "../../constants/addresses/getContractAddressByChainId";
+import { type ConnectionInfo, parseUnits, solidityPack, arrayify, keccak256, solidityKeccak256, splitSignature } from "ethers/lib/utils";
 
 /**
  * @internal
@@ -145,7 +145,7 @@ export class ContractWrapper<
       const baseBlockFee =
         block && block.baseFeePerGas
           ? block.baseFeePerGas
-          : utils.parseUnits("1", "gwei");
+          : parseUnits("1", "gwei");
       let defaultPriorityFee: BigNumber;
       if (chainId === ChainId.Mumbai || chainId === ChainId.Polygon) {
         // for polygon, get fee data from gas station
@@ -193,8 +193,8 @@ export class ContractWrapper<
         break;
     }
     let txGasPrice = defaultPriorityFeePerGas.add(extraTip);
-    const max = utils.parseUnits(maxGasPrice.toString(), "gwei"); // no more than max gas setting
-    const min = utils.parseUnits("2.5", "gwei"); // no less than 2.5 gwei
+    const max = parseUnits(maxGasPrice.toString(), "gwei"); // no more than max gas setting
+    const min = parseUnits("2.5", "gwei"); // no less than 2.5 gwei
     if (txGasPrice.gt(max)) {
       txGasPrice = max;
     }
@@ -225,7 +225,7 @@ export class ContractWrapper<
         break;
     }
     txGasPrice = txGasPrice.add(extraTip);
-    const max = utils.parseUnits(maxGasPrice.toString(), "gwei");
+    const max = parseUnits(maxGasPrice.toString(), "gwei");
     if (txGasPrice.gt(max)) {
       txGasPrice = max;
     }
@@ -354,7 +354,7 @@ export class ContractWrapper<
       if (fn === "multicall" && Array.isArray(args[0]) && args[0].length > 0) {
         const from = await this.getSignerAddress();
         args[0] = args[0].map((tx: any) =>
-          utils.solidityPack(["bytes", "address"], [tx, from]),
+          solidityPack(["bytes", "address"], [tx, from]),
         );
       }
 
@@ -470,7 +470,7 @@ export class ContractWrapper<
     callOverrides: CallOverrides,
   ) {
     const provider = this.getProvider() as providers.Provider & {
-      connection?: utils.ConnectionInfo;
+      connection?: ConnectionInfo;
     };
 
     // Get metadata for transaction to populate into error
@@ -711,8 +711,8 @@ export class ContractWrapper<
       data: transaction.data,
     };
 
-    const hashToSign = utils.arrayify(
-      utils.solidityKeccak256(
+    const hashToSign = arrayify(
+      solidityKeccak256(
         [
           "address",
           "address",
@@ -733,7 +733,7 @@ export class ContractWrapper<
           request.batchId,
           request.batchNonce,
           request.deadline,
-          utils.keccak256(request.data),
+          keccak256(request.data),
         ],
       ),
     );
@@ -872,7 +872,7 @@ export class ContractWrapper<
         amount,
       );
 
-      const { r, s, v } = utils.splitSignature(sig);
+      const { r, s, v } = splitSignature(sig);
 
       message = {
         to: this.readContract.address,

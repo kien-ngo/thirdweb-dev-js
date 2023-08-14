@@ -10,6 +10,7 @@ import { NetworkInput } from "../types";
 import { RPCConnectionHandler } from "./rpc-connection-handler";
 import { ThirdwebStorage } from "@thirdweb-dev/storage";
 import invariant from "tiny-invariant";
+import { defaultAbiCoder } from "ethers/lib/utils";
 
 /**
  * Handles verification of new contracts on any EVM
@@ -125,7 +126,7 @@ export class ContractVerifier extends RPCConnectionHandler {
         return arg.value;
       });
 
-      encodedArgs = utils.defaultAbiCoder.encode(paramTypes, paramValues);
+      encodedArgs = defaultAbiCoder.encode(paramTypes, paramValues);
     }
 
     const guid = await verify(

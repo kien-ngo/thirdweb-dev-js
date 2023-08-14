@@ -1,4 +1,4 @@
-import { DetectableFeature } from "../interfaces/DetectableFeature";
+import type { DetectableFeature } from "../interfaces/DetectableFeature";
 import { ContractWrapper } from "./contract-wrapper";
 import {
   FEATURE_ACCOUNT,
@@ -11,7 +11,7 @@ import type {
   SignerPermissionsInput,
   PermissionSnapshotInput,
 } from "../../types/account";
-import { AddressOrEns } from "../../schema";
+import type { AddressOrEns } from "../../schema";
 import { assertEnabled } from "../../common/feature-detection/assertEnabled";
 import { detectContractFeature } from "../../common/feature-detection/detectContractFeature";
 import { AccountPermissions } from "./account-permissions";

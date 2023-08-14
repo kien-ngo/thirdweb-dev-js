@@ -2,9 +2,9 @@ import { hasFunction } from "../../common/feature-detection/hasFunction";
 import { buildTransactionFunction } from "../../common/transactions";
 import { FEATURE_ROYALTY } from "../../constants/thirdweb-features";
 import { CommonRoyaltySchema } from "../../schema/contracts/common";
-import { DetectableFeature } from "../interfaces/DetectableFeature";
-import { TransactionResult } from "../types";
-import { ContractMetadata, IGenericSchemaType } from "./contract-metadata";
+import type { DetectableFeature } from "../interfaces/DetectableFeature";
+import type { TransactionResult } from "../types";
+import { ContractMetadata, type IGenericSchemaType } from "./contract-metadata";
 import { ContractWrapper } from "./contract-wrapper";
 import { Transaction } from "./transactions";
 import type {

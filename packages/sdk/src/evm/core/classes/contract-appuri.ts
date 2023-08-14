@@ -1,8 +1,8 @@
 import { detectContractFeature } from "../../common/feature-detection/detectContractFeature";
 import { buildTransactionFunction } from "../../common/transactions";
 import { FEATURE_APPURI } from "../../constants/thirdweb-features";
-import { DetectableFeature } from "../interfaces/DetectableFeature";
-import { TransactionResult } from "../types";
+import type { DetectableFeature } from "../interfaces/DetectableFeature";
+import type { TransactionResult } from "../types";
 import { ContractMetadata } from "./contract-metadata";
 import { ContractWrapper } from "./contract-wrapper";
 import { Transaction } from "./transactions";

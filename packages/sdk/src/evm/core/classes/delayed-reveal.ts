@@ -1,8 +1,8 @@
 import { Transaction } from "./transactions";
 import {
   CommonNFTInput,
-  NFTMetadata,
-  NFTMetadataInput,
+  type NFTMetadata,
+  type NFTMetadataInput,
 } from "../../../core/schema/nft";
 import { hasFunction } from "../../common/feature-detection/hasFunction";
 import {
@@ -10,10 +10,10 @@ import {
   getBaseUriFromBatch,
 } from "../../common/nft";
 import { buildTransactionFunction } from "../../common/transactions";
-import { FeatureName } from "../../constants/contract-features";
+import type { FeatureName } from "../../constants/contract-features";
 import type { BatchToReveal } from "../../types/delayed-reveal";
 import type { UploadProgressEvent } from "../../types/events";
-import {
+import type {
   BaseDelayedRevealERC1155,
   BaseDelayedRevealERC721,
 } from "../../types/eips";
@@ -24,10 +24,11 @@ import type {
   SignatureDrop,
 } from "@thirdweb-dev/contracts-js";
 import DeprecatedAbi from "@thirdweb-dev/contracts-js/dist/abis/IDelayedRevealDeprecated.json";
-import { TokensLazyMintedEvent } from "@thirdweb-dev/contracts-js/dist/declarations/src/DropERC721";
+import type { TokensLazyMintedEvent } from "@thirdweb-dev/contracts-js/dist/declarations/src/DropERC721";
 import { ThirdwebStorage } from "@thirdweb-dev/storage";
-import { BigNumber, type BigNumberish, utils, Contract } from "ethers";
+import { BigNumber, type BigNumberish, Contract } from "ethers";
 import type { TransactionResultWithId } from "../types";
+import { defaultAbiCoder, hexDataLength, solidityKeccak256, toUtf8Bytes } from "ethers/lib/utils";
 
 /**
  * Handles delayed reveal logic
@@ -135,7 +136,7 @@ export class DelayedReveal<
       );
       const encryptedBaseUri =
         await this.contractWrapper.readContract.encryptDecrypt(
-          utils.toUtf8Bytes(baseUri),
+          toUtf8Bytes(baseUri),
           hashedPassword,
         );
 
@@ -145,11 +146,11 @@ export class DelayedReveal<
         data = encryptedBaseUri;
       } else {
         const chainId = await this.contractWrapper.getChainID();
-        const provenanceHash = utils.solidityKeccak256(
+        const provenanceHash = solidityKeccak256(
           ["bytes", "bytes", "uint256"],
-          [utils.toUtf8Bytes(baseUri), hashedPassword, chainId],
+          [toUtf8Bytes(baseUri), hashedPassword, chainId],
         );
-        data = utils.defaultAbiCoder.encode(
+        data = defaultAbiCoder.encode(
           ["bytes", "bytes32"],
           [encryptedBaseUri, provenanceHash],
         );
@@ -286,11 +287,11 @@ export class DelayedReveal<
       ),
     );
     const encryptedBaseUris = encryptedUriData.map((data) => {
-      if (utils.hexDataLength(data) > 0) {
+      if (hexDataLength(data) > 0) {
         if (legacyContract) {
           return data;
         }
-        const result = utils.defaultAbiCoder.decode(["bytes", "bytes32"], data);
+        const result = defaultAbiCoder.decode(["bytes", "bytes32"], data);
         return result[0];
       } else {
         return data;
@@ -303,7 +304,7 @@ export class DelayedReveal<
         batchUri: meta.uri,
         placeholderMetadata: meta,
       }))
-      .filter((_, index) => utils.hexDataLength(encryptedBaseUris[index]) > 0);
+      .filter((_, index) => hexDataLength(encryptedBaseUris[index]) > 0);
   }
 
   /**
@@ -317,7 +318,7 @@ export class DelayedReveal<
   ) {
     const chainId = await this.contractWrapper.getChainID();
     const contractAddress = this.contractWrapper.readContract.address;
-    return utils.solidityKeccak256(
+    return solidityKeccak256(
       ["string", "uint256", "uint256", "address"],
       [password, chainId, batchTokenIndex, contractAddress],
     );

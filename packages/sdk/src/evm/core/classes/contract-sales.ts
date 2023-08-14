@@ -1,7 +1,7 @@
 import { buildTransactionFunction } from "../../common/transactions";
 import { FEATURE_PRIMARY_SALE } from "../../constants/thirdweb-features";
-import { Address } from "../../schema/shared/Address";
-import { DetectableFeature } from "../interfaces/DetectableFeature";
+import type { Address } from "../../schema/shared/Address";
+import type { DetectableFeature } from "../interfaces/DetectableFeature";
 import { ContractWrapper } from "./contract-wrapper";
 import { Transaction } from "./transactions";
 import type { IPrimarySale } from "@thirdweb-dev/contracts-js";

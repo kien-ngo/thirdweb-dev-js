@@ -14,24 +14,24 @@ import { isIncrementalVersion } from "../../common/version-checker";
 import { getContractPublisherAddress } from "../../constants/addresses/getContractPublisherAddress";
 import { getChainProvider } from "../../constants/urls";
 import {
-  AbiFunction,
+  type AbiFunction,
   AbiSchema,
-  ContractParam,
-  ContractSource,
-  ExtraPublishMetadata,
-  FullPublishMetadata,
+  type ContractParam,
+  type ContractSource,
+  type ExtraPublishMetadata,
+  type FullPublishMetadata,
   FullPublishMetadataSchemaInput,
-  PreDeployMetadataFetched,
-  ProfileMetadata,
-  ProfileMetadataInput,
+  type PreDeployMetadataFetched,
+  type ProfileMetadata,
+  type ProfileMetadataInput,
   ProfileSchemaOutput,
-  PublishedContract,
-  PublishedContractFetched,
+  type PublishedContract,
+  type PublishedContractFetched,
   PublishedContractSchema,
 } from "../../schema/contracts/custom";
-import { SDKOptions } from "../../schema/sdk-options";
-import { AddressOrEns } from "../../schema/shared/AddressOrEnsSchema";
-import { NetworkInput, TransactionResult } from "../types";
+import type { SDKOptions } from "../../schema/sdk-options";
+import type { AddressOrEns } from "../../schema/shared/AddressOrEnsSchema";
+import type { NetworkInput, TransactionResult } from "../types";
 import { ContractWrapper } from "./contract-wrapper";
 import { RPCConnectionHandler } from "./rpc-connection-handler";
 import { Transaction } from "./transactions";
@@ -40,10 +40,11 @@ import type {
   IContractPublisher,
 } from "@thirdweb-dev/contracts-js";
 import ContractPublisherAbi from "@thirdweb-dev/contracts-js/dist/abis/ContractPublisher.json";
-import { ContractPublishedEvent } from "@thirdweb-dev/contracts-js/dist/declarations/src/ContractPublisher";
+import type { ContractPublishedEvent } from "@thirdweb-dev/contracts-js/dist/declarations/src/ContractPublisher";
 import { ThirdwebStorage } from "@thirdweb-dev/storage";
-import { constants, utils } from "ethers";
+import { constants } from "ethers";
 import invariant from "tiny-invariant";
+import { solidityKeccak256 } from "ethers/lib/utils";
 
 /**
  * Handles publishing contracts (EXPERIMENTAL)
@@ -426,7 +427,7 @@ export class ContractPublisher extends RPCConnectionHandler {
         ? fetchedBytecode
         : `0x${fetchedBytecode}`;
 
-      const bytecodeHash = utils.solidityKeccak256(["bytes"], [bytecode]);
+      const bytecodeHash = solidityKeccak256(["bytes"], [bytecode]);
       const contractId = predeployMetadata.name;
 
       const fullMetadata = FullPublishMetadataSchemaInput.parse({

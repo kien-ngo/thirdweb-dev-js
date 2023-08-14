@@ -1,4 +1,4 @@
-import { DetectableFeature } from "../interfaces/DetectableFeature";
+import type { DetectableFeature } from "../interfaces/DetectableFeature";
 import { ContractWrapper } from "./contract-wrapper";
 import { FEATURE_ACCOUNT_PERMISSIONS } from "../../constants/thirdweb-features";
 import { utils, BigNumber } from "ethers";
@@ -9,21 +9,21 @@ import type {
   IAccountPermissions,
 } from "@thirdweb-dev/contracts-js";
 import {
-  SignedSignerPermissionsPayload,
-  SignerPermissionsOutput,
-  SignerWithPermissions,
-  SignerPermissions,
-  SignerPermissionsInput,
+  type SignedSignerPermissionsPayload,
+  type SignerPermissionsOutput,
+  type SignerWithPermissions,
+  type SignerPermissions,
+  type SignerPermissionsInput,
   SignerPermissionRequest,
   SignerPermissionsSchema,
-  PermissionSnapshotInput,
+  type PermissionSnapshotInput,
   PermissionSnapshotSchema,
-  PermissionSnapshotOutput,
+  type PermissionSnapshotOutput,
 } from "../../types/account";
 import invariant from "tiny-invariant";
 import { buildTransactionFunction } from "../../common/transactions";
 import { resolveOrGenerateId } from "../../common/signature-minting";
-import { AddressOrEns } from "../../schema";
+import type { AddressOrEns } from "../../schema";
 import { resolveAddress } from "../../common/ens/resolveAddress";
 
 export class AccountPermissions implements DetectableFeature {

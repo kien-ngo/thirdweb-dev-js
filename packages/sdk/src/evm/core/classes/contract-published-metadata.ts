@@ -2,10 +2,10 @@ import { extractEventsFromAbi } from "../../common/feature-detection/extractEven
 import { extractFunctionsFromAbi } from "../../common/feature-detection/extractFunctionsFromAbi";
 import { fetchContractMetadataFromAddress } from "../../common/metadata-resolver";
 import {
-  AbiEvent,
-  AbiFunction,
+  type AbiEvent,
+  type AbiFunction,
   AbiSchema,
-  PublishedMetadata,
+  type PublishedMetadata,
 } from "../../schema/contracts/custom";
 import { ContractWrapper } from "./contract-wrapper";
 import { ThirdwebStorage } from "@thirdweb-dev/storage";

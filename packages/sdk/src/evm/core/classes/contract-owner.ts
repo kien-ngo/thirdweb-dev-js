@@ -1,8 +1,8 @@
 import { resolveAddress } from "../../common/ens/resolveAddress";
 import { buildTransactionFunction } from "../../common/transactions";
 import { FEATURE_OWNER } from "../../constants/thirdweb-features";
-import { AddressOrEns } from "../../schema/shared/AddressOrEnsSchema";
-import { DetectableFeature } from "../interfaces/DetectableFeature";
+import type { AddressOrEns } from "../../schema/shared/AddressOrEnsSchema";
+import type { DetectableFeature } from "../interfaces/DetectableFeature";
 import { ContractWrapper } from "./contract-wrapper";
 import { Transaction } from "./transactions";
 import type { Ownable } from "@thirdweb-dev/contracts-js";

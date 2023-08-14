@@ -4,9 +4,9 @@ import { MissingRoleError } from "../../common/error";
 import { getRoleHash, Role } from "../../common/role";
 import { buildTransactionFunction } from "../../common/transactions";
 import { FEATURE_PERMISSIONS } from "../../constants/thirdweb-features";
-import { Address } from "../../schema/shared/Address";
-import { AddressOrEns } from "../../schema/shared/AddressOrEnsSchema";
-import { DetectableFeature } from "../interfaces/DetectableFeature";
+import type { Address } from "../../schema/shared/Address";
+import type { AddressOrEns } from "../../schema/shared/AddressOrEnsSchema";
+import type { DetectableFeature } from "../interfaces/DetectableFeature";
 import { ContractWrapper } from "./contract-wrapper";
 import { Transaction } from "./transactions";
 import type {

@@ -1,14 +1,14 @@
 import type { IAccountFactory } from "@thirdweb-dev/contracts-js";
-import { DetectableFeature } from "../interfaces/DetectableFeature";
+import type { DetectableFeature } from "../interfaces/DetectableFeature";
 import { FEATURE_ACCOUNT_FACTORY } from "../../constants/thirdweb-features";
 
 import { ContractEvents } from "./contract-events";
 import { ContractWrapper } from "./contract-wrapper";
 import { buildTransactionFunction } from "../../common/transactions";
 import { Transaction } from "./transactions";
-import { TransactionResultWithAddress } from "../types";
+import type { TransactionResultWithAddress } from "../types";
 import { type BytesLike, utils } from "ethers";
-import { AccountCreatedEvent } from "@thirdweb-dev/contracts-js/dist/declarations/src/AccountFactory";
+import type { AccountCreatedEvent } from "@thirdweb-dev/contracts-js/dist/declarations/src/AccountFactory";
 import { isContractDeployed } from "../../common/any-evm-utils/isContractDeployed";
 
 export class AccountFactory<TContract extends IAccountFactory>
