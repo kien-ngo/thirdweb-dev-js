@@ -12,7 +12,8 @@ import {
   PermissionSnapshotInput,
 } from "../../types";
 import { AddressOrEns } from "../../schema";
-import { assertEnabled, detectContractFeature } from "../../common";
+import { assertEnabled } from "../../common/feature-detection/assertEnabled";
+import { detectContractFeature } from "../../common/feature-detection/detectContractFeature";
 import { AccountPermissions } from "./account-permissions";
 
 export class Account<TContract extends IAccountCore>
