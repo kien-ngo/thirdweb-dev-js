@@ -20,7 +20,7 @@ import {
 import { Address } from "../../schema/shared/Address";
 import { SDKOptions } from "../../schema/sdk-options";
 import type { DeployEvents, DeployOptions } from "../../types/deploy";
-import {
+import type {
   DeploySchemaForPrebuiltContractType,
   PrebuiltContractType,
 } from "../../contracts";

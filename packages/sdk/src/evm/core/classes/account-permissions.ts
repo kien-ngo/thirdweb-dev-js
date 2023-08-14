@@ -19,7 +19,7 @@ import {
   PermissionSnapshotInput,
   PermissionSnapshotSchema,
   PermissionSnapshotOutput,
-} from "../../types";
+} from "../../types/account";
 import invariant from "tiny-invariant";
 import { buildTransactionFunction } from "../../common/transactions";
 import { resolveOrGenerateId } from "../../common/signature-minting";

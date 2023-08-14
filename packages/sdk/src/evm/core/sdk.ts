@@ -92,7 +92,7 @@ import type {
   OpenEditionContractDeployMetadata,
 } from "../types/deploy";
 import type { ContractWithMetadata } from "../types/registry";
-import { DeploySchemaForPrebuiltContractType } from "../contracts";
+import type { DeploySchemaForPrebuiltContractType } from "../contracts";
 import { ContractFactory } from "./classes/factory";
 import { ContractRegistry } from "./classes/registry";
 import { DeployTransaction, Transaction } from "./classes/transactions";

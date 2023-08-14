@@ -6,11 +6,11 @@ import {
 } from "../../constants/thirdweb-features";
 
 import type { IAccountCore } from "@thirdweb-dev/contracts-js";
-import {
+import type {
   SignerWithPermissions,
   SignerPermissionsInput,
   PermissionSnapshotInput,
-} from "../../types";
+} from "../../types/account";
 import { AddressOrEns } from "../../schema";
 import { assertEnabled } from "../../common/feature-detection/assertEnabled";
 import { detectContractFeature } from "../../common/feature-detection/detectContractFeature";

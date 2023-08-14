@@ -1,4 +1,4 @@
-import { ContractType } from "../contracts";
+import type { ContractType } from "../contracts";
 import type { Address } from "../schema/shared/Address";
 import type { AddressOrEns } from "../schema/shared/AddressOrEnsSchema";
 

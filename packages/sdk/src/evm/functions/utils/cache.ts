@@ -1,4 +1,4 @@
-import { ValidContractInstance } from "../../contracts";
+import type { ValidContractInstance } from "../../contracts";
 import { ThirdwebStorage } from "@thirdweb-dev/storage";
 
 let STORAGE_CACHE = new ThirdwebStorage();
