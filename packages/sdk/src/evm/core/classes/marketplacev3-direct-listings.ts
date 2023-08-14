@@ -15,7 +15,7 @@ import {
   InterfaceId_IERC721,
 } from "../../constants/contract";
 import { FEATURE_DIRECT_LISTINGS } from "../../constants/thirdweb-features";
-import { Status } from "../../enums";
+import { Status } from "../../enums/marketplace/Status";
 import { AddressOrEns } from "../../schema/shared/AddressOrEnsSchema";
 import {
   DirectListingInputParams,

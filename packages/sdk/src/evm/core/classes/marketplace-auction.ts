@@ -18,7 +18,7 @@ import {
 } from "../../common/marketplace";
 import { fetchTokenMetadataForContract } from "../../common/nft";
 import { buildTransactionFunction } from "../../common/transactions";
-import { ListingType } from "../../enums";
+import { ListingType } from "../../enums/marketplace/ListingType";
 import { CurrencyValue, Price } from "../../types/currency";
 import {
   AuctionListing,

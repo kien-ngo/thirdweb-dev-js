@@ -7,7 +7,7 @@ import { hasFunction } from "../../common/feature-detection/hasFunction";
 import { SnapshotFormatVersion } from "../../common/sharded-merkle-tree";
 import { buildTransactionFunction } from "../../common/transactions";
 import { isNode } from "../../common/utils";
-import { ClaimEligibility } from "../../enums";
+import { ClaimEligibility } from "../../enums/ClaimEligibility";
 import { AbstractClaimConditionContractStruct } from "../../schema/contracts/common/claim-conditions";
 import { AddressOrEns } from "../../schema/shared/AddressOrEnsSchema";
 import { SnapshotEntryWithProof } from "../../schema/contracts/common/snapshots";

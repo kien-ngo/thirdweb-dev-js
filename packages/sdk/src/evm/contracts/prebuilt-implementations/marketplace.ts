@@ -20,7 +20,7 @@ import { MarketplaceDirect } from "../../core/classes/marketplace-direct";
 import { Transaction } from "../../core/classes/transactions";
 import { UpdateableNetwork } from "../../core/interfaces/contract";
 import { NetworkInput } from "../../core/types";
-import { ListingType } from "../../enums";
+import { ListingType } from "../../enums/marketplace";
 import { Abi, AbiInput, AbiSchema } from "../../schema/contracts/custom";
 import { MarketplaceContractSchema } from "../../schema/contracts/marketplace";
 import { SDKOptions } from "../../schema/sdk-options";
