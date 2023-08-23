@@ -52,6 +52,7 @@ export const SDKOptionsSchema = /* @__PURE__ */ (() =>
         ])
         .optional(),
       gatewayUrls: z.array(z.string()).optional(),
+      downloadTimeoutInSecond: z.number().default(10),
     })
     .default({
       gasSettings: { maxPriceInGwei: 300, speed: "fastest" },
@@ -65,7 +66,7 @@ export const SDKOptionsSchema = /* @__PURE__ */ (() =>
  * {
  *   readonlySettings: {
  *     rpcUrl, // force read calls to go through your own RPC url
- *     chainId, // reduce RPC calls by sepcifying your chain ID
+ *     chainId, // reduce RPC calls by specifying your chain ID
  *   },
  *   gasSettings: {
  *     maxPriceInGwei, // Maximum gas price for transactions (default 300 gwei)
